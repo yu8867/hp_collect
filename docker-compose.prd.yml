@@ -1,0 +1,33 @@
+services:
+  frontend1:
+    build:
+      context: ./lp-collect
+      dockerfile: Dockerfile
+    container_name: lp_collect_frontend1
+    environment:
+      - PORT=3001
+    ports:
+      - "3001:3001"
+    restart: always
+
+  frontend2:
+    build:
+      context: ./YORHA_v2
+      dockerfile: Dockerfile
+    container_name: yorha_v2_frontend2
+    environment:
+      - PORT=3002
+    ports:
+      - "3002:3002"
+    restart: always
+
+  frontend3:
+    build:
+      context: ./kid-app
+      dockerfile: Dockerfile
+    container_name: kid_frontend3
+    environment:
+      - PORT=3003
+    ports:
+      - "3003:3003"
+    restart: always

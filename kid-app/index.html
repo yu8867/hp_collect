@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>RoboKids - 子供向けプログラミング教室</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c:wght@400;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            fontFamily: {
+              sans: ['"M PLUS Rounded 1c"', "sans-serif"],
+            },
+            colors: {
+              brand: {
+                blue: "#00AEEF",
+                yellow: "#FFD500",
+                pink: "#FF007F",
+                purple: "#662D91",
+              },
+            },
+          },
+        },
+      };
+    </script>
+    <script type="importmap">
+      {
+        "imports": {
+          "react": "https://aistudiocdn.com/react@^19.2.0",
+          "react-dom/": "https://aistudiocdn.com/react-dom@^19.2.0/",
+          "react/": "https://aistudiocdn.com/react@^19.2.0/",
+          "lucide-react": "https://aistudiocdn.com/lucide-react@^0.554.0"
+        }
+      }
+    </script>
+    <script type="module" src="/src/index.tsx"></script>
+  </head>
+  <body
+    class="bg-gray-50 text-gray-800 antialiased selection:bg-brand-yellow selection:text-brand-purple"
+  >
+    <div id="root"></div>
+  </body>
+</html>

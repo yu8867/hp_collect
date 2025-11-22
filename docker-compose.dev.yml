@@ -1,0 +1,56 @@
+services:
+  frontend1:
+    build:
+      context: ./lp-collect
+      dockerfile: Dockerfile.dev
+    container_name: lp_collect_frontend1
+    environment:
+      - PORT=3001
+    ports:
+      - "3001:3001"
+    volumes:
+      - ./lp-collect:/app
+      - /app/node_modules
+    restart: always
+
+  frontend2:
+    build:
+      context: ./YORHA_v2
+      dockerfile: Dockerfile.dev
+    container_name: yorha_v2_frontend2
+    environment:
+      - PORT=3002
+    ports:
+      - "3002:3002"
+    volumes:
+      - ./YORHA_v2:/app
+      - /app/node_modules
+    restart: always
+
+  frontend3:
+    build:
+      context: ./kid-app
+      dockerfile: Dockerfile.dev
+    container_name: kid_frontend3
+    environment:
+      - PORT=3003
+    ports:
+      - "3003:3003"
+    volumes:
+      - ./kid-app:/app
+      - /app/node_modules
+    restart: always
+
+  frontend4:
+    build:
+      context: ./the-stack-burger
+      dockerfile: Dockerfile.dev
+    container_name: the_stack_burger_frontend4
+    environment:
+      - PORT=3004
+    ports:
+      - "3004:3004"
+    volumes:
+      - ./the-stack-burger:/app
+      - /app/node_modules
+    restart: always

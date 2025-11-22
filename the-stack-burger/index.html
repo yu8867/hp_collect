@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>THE STACK BURGER | 肉汁、解禁。</title>
+    <meta
+      name="description"
+      content="あふれ出る肉汁、黒毛和牛100%。男の本能を刺激するグルメバーガー。"
+    />
+
+    <!-- Google Fonts: Noto Sans JP for readability and impact -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700;900&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            fontFamily: {
+              sans: ['"Noto Sans JP"', "sans-serif"],
+            },
+            colors: {
+              brand: {
+                orange: "#FF4500", // Flame orange
+                black: "#050505", // Deep black
+              },
+            },
+            keyframes: {
+              pulse_glow: {
+                "0%, 100%": { boxShadow: "0 0 15px rgba(255, 69, 0, 0.5)" },
+                "50%": { boxShadow: "0 0 25px rgba(255, 69, 0, 0.8)" },
+              },
+            },
+            animation: {
+              pulse_glow: "pulse_glow 2s cubic-bezier(0.4, 0, 0.6, 1) infinite",
+            },
+          },
+        },
+      };
+    </script>
+    <style>
+      body {
+        background-color: #000;
+        color: #fff;
+      }
+      /* Hide scrollbar for clean look but allow scrolling */
+      ::-webkit-scrollbar {
+        width: 8px;
+      }
+      ::-webkit-scrollbar-track {
+        background: #000;
+      }
+      ::-webkit-scrollbar-thumb {
+        background: #333;
+        border-radius: 4px;
+      }
+    </style>
+    <script type="importmap">
+      {
+        "imports": {
+          "react": "https://aistudiocdn.com/react@^19.2.0",
+          "react-dom/": "https://aistudiocdn.com/react-dom@^19.2.0/",
+          "react/": "https://aistudiocdn.com/react@^19.2.0/",
+          "lucide-react": "https://aistudiocdn.com/lucide-react@^0.554.0"
+        }
+      }
+    </script>
+    <link rel="stylesheet" href="/index.css" />
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/index.tsx"></script>
+  </body>
+</html>

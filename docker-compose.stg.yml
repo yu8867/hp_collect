@@ -1,0 +1,51 @@
+services:
+  frontend1:
+    build:
+      context: ./lp-collect
+      dockerfile: Dockerfile.stg
+    container_name: lp_collect_frontend1
+    networks:
+      - webnet
+
+  frontend2:
+    build:
+      context: ./YORHA_v2
+      dockerfile: Dockerfile.stg
+    container_name: yorha_v2_frontend2
+    networks:
+      - webnet
+
+  frontend3:
+    build:
+      context: ./kid-app
+      dockerfile: Dockerfile.stg
+    container_name: kid_frontend3
+    networks:
+      - webnet
+
+  frontend4:
+    build:
+      context: ./the-stack-burger
+      dockerfile: Dockerfile.stg
+    container_name: the_stack_burger_frontend4
+    networks:
+      - webnet
+
+  reverse-proxy:
+    image: nginx:stable-alpine
+    container_name: nginx_reverse_proxy
+    volumes:
+      - ./nginx-main.conf:/etc/nginx/conf.d/default.conf
+    ports:
+      - "80:80"
+      - "443:443" # 使うなら
+    networks:
+      - webnet
+    depends_on:
+      - frontend1
+      - frontend2
+      - frontend3
+      - frontend4
+
+networks:
+  webnet:

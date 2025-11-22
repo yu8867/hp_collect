@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>YoRHa Archive // System Entry</title>
+
+    <!-- Fonts: Cormorant Garamond (Serif) and Share Tech Mono (UI/Tech) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,400&family=Share+Tech+Mono&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Tailwind Config -->
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              yorha: {
+                bg: "#2a2a2a", // Dark slate gray background
+                panel: "#333333", // Slightly lighter panel
+                beige: "#dad4bb", // Classic YoRHa UI beige
+                darkBeige: "#57544a", // Darker sepia for inactive elements
+                text: "#e8e8e8", // Soft white
+                alert: "#cd664d", // Muted red
+              },
+            },
+            fontFamily: {
+              serif: ['"Cormorant Garamond"', "serif"],
+              mono: ['"Share Tech Mono"', "monospace"],
+            },
+            backgroundImage: {
+              scanlines:
+                "repeating-linear-gradient(0deg, transparent, transparent 2px, #000000 3px, #000000 3px)",
+            },
+            animation: {
+              "glitch-skew":
+                "glitchSkew 1s cubic-bezier(0.25, 0.46, 0.45, 0.94) both infinite",
+              "fade-in": "fadeIn 2s ease-out forwards",
+              "pulse-slow": "pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite",
+            },
+            keyframes: {
+              glitchSkew: {
+                "0%": { transform: "translate(0)" },
+                "20%": { transform: "translate(-2px, 2px)" },
+                "40%": { transform: "translate(-2px, -2px)" },
+                "60%": { transform: "translate(2px, 2px)" },
+                "80%": { transform: "translate(2px, -2px)" },
+                "100%": { transform: "translate(0)" },
+              },
+              fadeIn: {
+                "0%": { opacity: "0" },
+                "100%": { opacity: "1" },
+              },
+            },
+          },
+        },
+      };
+    </script>
+    <style>
+      /* Custom Global Styles for Noise and Scrollbar */
+      body {
+        background-color: #2b2b2b;
+        cursor: crosshair;
+        overflow-x: hidden;
+      }
+
+      /* The Noise Overlay */
+      .noise-overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh;
+        pointer-events: none;
+        z-index: 50;
+        opacity: 0.05;
+        background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='1'/%3E%3C/svg%3E");
+      }
+
+      /* CRT Scanline Overlay */
+      .scanline-overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh;
+        pointer-events: none;
+        z-index: 49;
+        background: linear-gradient(
+            rgba(18, 16, 16, 0) 50%,
+            rgba(0, 0, 0, 0.25) 50%
+          ),
+          linear-gradient(
+            90deg,
+            rgba(255, 0, 0, 0.06),
+            rgba(0, 255, 0, 0.02),
+            rgba(0, 0, 255, 0.06)
+          );
+        background-size: 100% 2px, 3px 100%;
+      }
+
+      /* Selection color */
+      ::selection {
+        background: #dad4bb;
+        color: #2b2b2b;
+      }
+
+      /* Scrollbar customization */
+      ::-webkit-scrollbar {
+        width: 6px;
+      }
+      ::-webkit-scrollbar-track {
+        background: #2a2a2a;
+      }
+      ::-webkit-scrollbar-thumb {
+        background: #57544a;
+      }
+      ::-webkit-scrollbar-thumb:hover {
+        background: #dad4bb;
+      }
+    </style>
+    <!-- Note: importmap removed to allow Vite to resolve local dependencies during development -->
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/index.tsx"></script>
+
+    <div class="noise-overlay"></div>
+    <div class="scanline-overlay"></div>
+  </body>
+</html>
