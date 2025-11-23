@@ -1,80 +1,16 @@
 import React from "react";
 import { ArrowUpRight, ArrowRight } from "lucide-react";
-import { PortfolioItem, View } from "../types";
+import { View } from "types";
+import { PortfolioItems } from "./Items";
 
 interface PortfolioProps {
   onNavigate: (view: View) => void;
 }
 
-const portfolioItems: PortfolioItem[] = [
-  {
-    id: "1",
-    title: "Nier AutoMata LP",
-    category: "Gadget / Tech",
-    description:
-      "製品の先進性を伝えるダークモードUIを採用し、スクロールに応じた3Dアニメーションを実装",
-    imageUrl: "yorha.png",
-    size: "large",
-    tags: ["近未来", "LP"],
-    urls: "http://localhost/app2/",
-  },
-  {
-    id: "2",
-    title: "RoboKids",
-    category: "study",
-    description: "",
-    imageUrl: "kid.png",
-    size: "wide",
-    tags: ["清潔感", "美容", "予約機能"],
-    urls: "http://localhost/app3/",
-  },
-  {
-    id: "3",
-    title: "MIYABI SWEETS",
-    category: "Luxury Food",
-    description:
-      "プレミアム抹茶スイーツのブランドサイト。シズル感と和モダンな世界観。",
-    imageUrl: "burger.png",
-    size: "wide",
-    tags: ["シズル感", "和モダン", "EC"],
-    urls: "http://localhost/app4/",
-  },
-  {
-    id: "4",
-    title: "DATASPHERE SAAS",
-    category: "B2B Software",
-    description:
-      "B2B向けSaaSのサービス紹介。誠実なブルーを基調に機能性を図解。",
-    imageUrl: "https://picsum.photos/id/180/800/400",
-    size: "tall",
-    tags: ["SaaS", "B2B", "信頼感"],
-    urls: "http://localhost/app2/",
-  },
-  {
-    id: "5",
-    title: "GROWTH SUMMIT 2025",
-    category: "Seminar / Info",
-    description:
-      "ビジネスセミナーの集客LP。力強いタイポグラフィと心理トリガーでCVR最大化。",
-    imageUrl: "https://picsum.photos/id/26/800/400",
-    size: "tall",
-    tags: ["セミナー", "セールス", "インパクト"],
-    urls: "http://localhost/app2/",
-  },
-  {
-    id: "1",
-    title: "Nier AutoMata LP",
-    category: "Gadget / Tech",
-    description:
-      "製品の先進性を伝えるダークモードUIを採用し、スクロールに応じた3Dアニメーションを実装",
-    imageUrl: "yorha.png",
-    size: "large",
-    tags: ["近未来", "LP"],
-    urls: "http://localhost/app2/",
-  },
-];
-
 const Portfolio: React.FC<PortfolioProps> = ({ onNavigate }) => {
+  const portfolioItems = PortfolioItems;
+  console.log("PortfolioItems:", portfolioItems);
+
   return (
     <section id="works" className="py-24 bg-black text-white">
       <div className="container mx-auto px-4">

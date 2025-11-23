@@ -8,7 +8,7 @@ import Footer from "./components/Footer";
 import HomeCTA from "./components/HomeCTA";
 import ContactPage from "./components/ContactPage";
 import WorksPage from "./components/WorksPage";
-import { View } from "../types";
+import { View } from "./components/types";
 import Comparison from "./components/Comparison";
 import Process from "./components/Process";
 import FAQ from "./components/FAQ";

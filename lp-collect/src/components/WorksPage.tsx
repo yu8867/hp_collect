@@ -1,73 +1,13 @@
 import React from "react";
 import { ArrowUpRight } from "lucide-react";
 import { View } from "../types";
+import { PortfolioItems } from "./Items";
 
 interface WorksPageProps {
   onNavigate: (view: View) => void;
 }
 
-const worksData = [
-  {
-    id: "1",
-    title: "NEO-GEAR X1",
-    category: "Gadget / Tech",
-    description:
-      "次世代ウェアラブルデバイスのローンチLP。製品の先進性を伝えるダークモードUIを採用し、スクロールに応じた3Dアニメーションを実装。XXXXXX",
-    imageUrl: "yorha.png",
-    tags: ["Web Design", "React", "GSAP"],
-    urls: "http://localhost/app2/",
-  },
-  {
-    id: "2",
-    title: "LUMIÈRE SALON",
-    category: "Beauty & Wellness",
-    description:
-      "高級美容サロンの予約機能付きブランドサイト。ターゲット層に合わせた余白の取り方とタイポグラフィで、信頼感と高級感を演出。",
-    imageUrl: "kid.png",
-    tags: ["UI/UX", "Booking System", "Minimal"],
-    urls: "http://localhost/app3/",
-  },
-  {
-    id: "3",
-    title: "MIYABI SWEETS",
-    category: "Luxury Food",
-    description:
-      "プレミアム抹茶スイーツのECサイト。シズル感のある写真と和モダンな配色で、購買意欲を刺激するデザインに仕上げました。",
-    imageUrl: "burger.png",
-    tags: ["E-Commerce", "Branding", "Photo Direction"],
-    urls: "http://localhost/app4/",
-  },
-  {
-    id: "4",
-    title: "DATASPHERE SAAS",
-    category: "B2B Software",
-    description:
-      "エンタープライズ向けSaaSのサービス紹介サイト。複雑な機能を直感的な図解とアニメーションで表現し、リード獲得率を向上。",
-    imageUrl: "https://picsum.photos/id/180/800/400",
-    tags: ["B2B", "Lead Generation", "Tech"],
-    urls: "http://localhost:3002/",
-  },
-  {
-    id: "5",
-    title: "GROWTH SUMMIT 2025",
-    category: "Event / Seminar",
-    description:
-      "ビジネスリーダー向けサミットの特設LP。緊急性を煽るカウントダウンタイマーと、インパクトのあるファーストビューでCVを最大化。",
-    imageUrl: "https://picsum.photos/id/26/800/400",
-    tags: ["Event", "Marketing", "Conversion"],
-    urls: "http://localhost:3002/",
-  },
-  {
-    id: "6",
-    title: "ECO-LIFE APPS",
-    category: "Mobile App",
-    description:
-      "サステナブルな生活を支援するアプリのLP。自然を感じさせる配色と親しみやすいイラストレーションで、ユーザーの共感を呼びます。",
-    imageUrl: "https://picsum.photos/id/82/800/600",
-    tags: ["App LP", "Illustration", "Green"],
-    urls: "http://localhost:3002/",
-  },
-];
+const worksData = PortfolioItems;
 
 const WorksPage: React.FC<WorksPageProps> = ({ onNavigate }) => {
   return (
