@@ -6,6 +6,8 @@ COPY package.json package-lock.json ./
 RUN npm ci
 
 COPY . .
+
+# サブパス /yorha/ でアクセスされるためbaseを設定（vite.config.tsでも設定済み）
 RUN npm run build
 
 # Production Stage

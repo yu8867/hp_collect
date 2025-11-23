@@ -6,6 +6,9 @@ COPY package.json package-lock.json ./
 RUN npm ci
 
 COPY . .
+
+# サブパス /robokids/ でアクセスされるためbaseを設定
+ENV VITE_BASE_PATH=/robokids/
 RUN npm run build
 
 # Production Stage

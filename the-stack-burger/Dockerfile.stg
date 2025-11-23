@@ -6,6 +6,9 @@ COPY package.json package-lock.json ./
 RUN npm ci
 
 COPY . .
+
+# サブパス /the-stack-burger/ でアクセスされるためbaseを設定
+ENV VITE_BASE_PATH=/the-stack-burger/
 RUN npm run build
 
 # Production Stage
