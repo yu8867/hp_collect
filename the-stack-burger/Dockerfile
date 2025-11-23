@@ -1,6 +1,3 @@
-# ============================
-# 1. Build Stage
-# ============================
 FROM node:20-slim AS builder
 WORKDIR /app
 
@@ -12,21 +9,14 @@ RUN npm ci
 COPY . .
 RUN npm run build
 
-# ============================
-# 2. Production server
-# ============================
-FROM node:20-slim AS runner
-WORKDIR /app
+FROM nginx:stable-alpine AS runner
 
-# Copy only what's needed for preview server
-COPY --from=builder /app/dist ./dist
-COPY --from=builder /app/package.json ./
-COPY --from=builder /app/node_modules ./node_modules
+# Replace default config with SPA-friendly server block
+RUN rm -f /etc/nginx/conf.d/default.conf
+COPY nginx.conf /etc/nginx/conf.d/default.conf
 
-EXPOSE 4173
+# Serve built static files
+COPY --from=builder /app/dist /usr/share/nginx/html/
 
-ENV HOST=0.0.0.0
-ENV PORT=4173
-
-# Run Vite preview so static bundle is served in production-like mode
-CMD ["sh", "-c", "npm run preview -- --host ${HOST:-0.0.0.0} --port ${PORT:-4173}"]
+EXPOSE 80
+CMD ["nginx", "-g", "daemon off;"]

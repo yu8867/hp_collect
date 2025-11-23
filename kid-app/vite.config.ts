@@ -4,8 +4,17 @@ import react from "@vitejs/plugin-react";
 
 export default defineConfig(({ mode }) => {
   const env = loadEnv(mode, ".", "");
+  const rawBase = env.VITE_BASE_PATH?.trim() || "./";
+  const normalizeBase = (value: string) => {
+    if (value === "./") {
+      return "./";
+    }
+    const stripped = value.replace(/^\/*/, "").replace(/\/*$/, "");
+    return stripped ? `/${stripped}/` : "/";
+  };
+  const base = normalizeBase(rawBase);
   return {
-    base: "/robokids/",
+    base,
     server: {
       port: 3000,
       host: "0.0.0.0",

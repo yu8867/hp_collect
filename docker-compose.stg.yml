@@ -4,6 +4,8 @@ services:
       context: ./lp-collect
       dockerfile: Dockerfile.stg
     container_name: lp_collect_frontend1
+    ports:
+      - "3001:80"
     networks:
       - webnet
 
@@ -12,6 +14,8 @@ services:
       context: ./YORHA_v2
       dockerfile: Dockerfile.stg
     container_name: yorha_v2_frontend2
+    ports:
+      - "3002:80"
     networks:
       - webnet
 
@@ -20,6 +24,8 @@ services:
       context: ./kid-app
       dockerfile: Dockerfile.stg
     container_name: kid_frontend3
+    ports:
+      - "3003:80"
     networks:
       - webnet
 
@@ -28,6 +34,8 @@ services:
       context: ./the-stack-burger
       dockerfile: Dockerfile.stg
     container_name: the_stack_burger_frontend4
+    ports:
+      - "3004:80"
     networks:
       - webnet
 
