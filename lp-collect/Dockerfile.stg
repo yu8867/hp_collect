@@ -11,7 +11,10 @@ RUN npm run build
 # Production Stage
 FROM nginx:stable-alpine
 
-# 静的ファイルを配置
+# デフォルト nginx 設定を削除（必須）
+RUN rm -f /etc/nginx/conf.d/default.conf
+
+# ビルドした静的ファイルを配置
 COPY --from=builder /app/dist /usr/share/nginx/html/
 
 EXPOSE 80
