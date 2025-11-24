@@ -1,0 +1,19 @@
+FROM node:20-slim
+
+WORKDIR /app
+
+# Install dependencies
+COPY package.json package-lock.json ./
+RUN npm install
+
+# Copy all source code
+COPY . .
+
+# 環境変数（compose から渡される）
+ENV HOST=0.0.0.0
+ENV PORT=3005
+
+EXPOSE 3005
+
+# dev モードを外部公開
+CMD ["sh", "-c", "npm run dev -- --host ${HOST} --port ${PORT}"]
