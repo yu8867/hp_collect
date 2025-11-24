@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import {
   Gamepad2,
   Brain,
@@ -11,10 +11,14 @@ import {
   Users,
   Laptop,
 } from "lucide-react";
-import { SITE_CONTENT, IMAGE_PROMPTS } from "./constants";
+import { SITE_CONTENT } from "./constants";
 import { SectionTitle } from "./components/SectionTitle";
 import { Button } from "./components/Button";
 import { StickyFooter } from "./components/StickyFooter";
+import { Testimonials } from "./components/Testimonials";
+import { Stats } from "./components/Stats";
+import { FAQ } from "./components/FAQ";
+import { useScrollAnimation } from "./hooks/useScrollAnimation";
 
 // Types for feature icons
 const IconMap = {
@@ -23,10 +27,29 @@ const IconMap = {
   Sparkles: Lightbulb,
 };
 
+// Smooth scroll handler
+const smoothScrollTo = (elementId: string) => {
+  const element = document.getElementById(elementId);
+  if (element) {
+    element.scrollIntoView({ behavior: "smooth" });
+  }
+};
+
 function App() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isLoaded, setIsLoaded] = useState(false);
+
+  useEffect(() => {
+    setIsLoaded(true);
+  }, []);
 
   const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
+
+  const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, id: string) => {
+    e.preventDefault();
+    smoothScrollTo(id);
+    setIsMenuOpen(false);
+  };
 
   return (
     <div className="min-h-screen pb-24 md:pb-0 font-sans bg-white overflow-x-hidden">
@@ -46,19 +69,29 @@ function App() {
           <nav className="hidden md:flex gap-6 items-center">
             <a
               href="#features"
-              className="font-bold text-gray-600 hover:text-brand-blue"
+              onClick={(e) => handleNavClick(e, "features")}
+              className="font-bold text-gray-600 hover:text-brand-blue transition-colors"
             >
               特徴
             </a>
             <a
               href="#curriculum"
-              className="font-bold text-gray-600 hover:text-brand-blue"
+              onClick={(e) => handleNavClick(e, "curriculum")}
+              className="font-bold text-gray-600 hover:text-brand-blue transition-colors"
             >
               コース
             </a>
             <a
+              href="#faq"
+              onClick={(e) => handleNavClick(e, "faq")}
+              className="font-bold text-gray-600 hover:text-brand-blue transition-colors"
+            >
+              FAQ
+            </a>
+            <a
               href="#contact"
-              className="bg-brand-yellow px-4 py-2 rounded-full font-bold text-gray-900 shadow-sm hover:bg-yellow-400 transition-colors"
+              onClick={(e) => handleNavClick(e, "contact")}
+              className="bg-brand-yellow px-4 py-2 rounded-full font-bold text-gray-900 shadow-sm hover:bg-yellow-400 hover:scale-105 transition-all"
             >
               無料体験
             </a>
@@ -72,25 +105,32 @@ function App() {
 
         {/* Mobile Nav Dropdown */}
         {isMenuOpen && (
-          <div className="md:hidden bg-white border-t p-4 flex flex-col gap-4 shadow-xl absolute w-full">
+          <div className="md:hidden bg-white border-t p-4 flex flex-col gap-4 shadow-xl absolute w-full animate-fade-in">
             <a
               href="#features"
-              className="font-bold text-gray-700 py-2"
-              onClick={toggleMenu}
+              className="font-bold text-gray-700 py-2 hover:text-brand-blue transition-colors"
+              onClick={(e) => handleNavClick(e, "features")}
             >
               特徴
             </a>
             <a
               href="#curriculum"
-              className="font-bold text-gray-700 py-2"
-              onClick={toggleMenu}
+              className="font-bold text-gray-700 py-2 hover:text-brand-blue transition-colors"
+              onClick={(e) => handleNavClick(e, "curriculum")}
             >
               コース
             </a>
             <a
+              href="#faq"
+              className="font-bold text-gray-700 py-2 hover:text-brand-blue transition-colors"
+              onClick={(e) => handleNavClick(e, "faq")}
+            >
+              FAQ
+            </a>
+            <a
               href="#contact"
-              className="font-bold text-brand-pink py-2"
-              onClick={toggleMenu}
+              className="font-bold text-brand-pink py-2 hover:text-brand-purple transition-colors"
+              onClick={(e) => handleNavClick(e, "contact")}
             >
               無料体験予約
             </a>
@@ -103,9 +143,17 @@ function App() {
         {/* Decorative Background Elements */}
         <div className="absolute top-20 right-0 w-64 h-64 bg-brand-yellow/20 rounded-full blur-3xl -z-10 animate-pulse"></div>
         <div className="absolute bottom-0 left-0 w-48 h-48 bg-brand-blue/20 rounded-full blur-3xl -z-10"></div>
+        {/* Floating decorative elements */}
+        <div className="absolute top-1/4 left-10 w-4 h-4 bg-brand-pink rounded-full animate-bounce opacity-60" style={{ animationDelay: "0.5s" }}></div>
+        <div className="absolute top-1/3 right-20 w-3 h-3 bg-brand-yellow rounded-full animate-bounce opacity-60" style={{ animationDelay: "1s" }}></div>
+        <div className="absolute bottom-1/4 left-1/4 w-2 h-2 bg-brand-blue rounded-full animate-bounce opacity-60" style={{ animationDelay: "1.5s" }}></div>
 
         <div className="max-w-5xl mx-auto flex flex-col md:flex-row items-center gap-8 md:gap-12">
-          <div className="w-full md:w-1/2 text-center md:text-left z-10">
+          <div
+            className={`w-full md:w-1/2 text-center md:text-left z-10 transition-all duration-1000 ${
+              isLoaded ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
+            }`}
+          >
             <div className="inline-block bg-brand-pink text-white text-xs md:text-sm font-bold px-3 py-1 rounded-full mb-4 animate-bounce shadow-md">
               {SITE_CONTENT.hero.badge}
             </div>
@@ -116,19 +164,19 @@ function App() {
               {SITE_CONTENT.hero.subtitle}
             </p>
             <div className="hidden md:block">
-              <Button onClick={() => (window.location.href = "#contact")}>
+              <Button onClick={() => smoothScrollTo("contact")}>
                 {SITE_CONTENT.cta.button}
               </Button>
             </div>
           </div>
 
-          <div className="w-full md:w-1/2 relative group">
+          <div
+            className={`w-full md:w-1/2 relative group transition-all duration-1000 delay-300 ${
+              isLoaded ? "opacity-100 translate-x-0" : "opacity-0 translate-x-8"
+            }`}
+          >
             <div className="absolute inset-0 bg-brand-blue rounded-[2rem] rotate-3 group-hover:rotate-6 transition-transform duration-300"></div>
             <div className="relative rounded-[2rem] overflow-hidden border-4 border-white shadow-2xl bg-gray-200 aspect-[4/3]">
-              {/* 
-                  Prompt used for image: 
-                  {IMAGE_PROMPTS.hero}
-               */}
               <img
                 src="hero.png"
                 alt="Happy kids coding"
@@ -271,18 +319,34 @@ function App() {
         </div>
       </section>
 
+      {/* Stats Section */}
+      <Stats />
+
+      {/* Testimonials Section */}
+      <Testimonials />
+
+      {/* FAQ Section */}
+      <section id="faq">
+        <FAQ />
+      </section>
+
       {/* CTA Section (Offer & Action) */}
       <section
         id="contact"
-        className="py-20 px-4 bg-white relative overflow-hidden"
+        className="py-20 px-4 bg-gradient-to-br from-blue-50 to-purple-50 relative overflow-hidden"
       >
+        {/* Background decoration */}
+        <div className="absolute top-10 right-10 w-32 h-32 bg-brand-yellow/20 rounded-full blur-2xl"></div>
+        <div className="absolute bottom-10 left-10 w-24 h-24 bg-brand-pink/20 rounded-full blur-2xl"></div>
+
         <div className="max-w-3xl mx-auto text-center relative z-10">
           <div className="mb-8">
             <Star
-              className="inline-block text-brand-yellow w-12 h-12 animate-spin-slow mb-4"
+              className="inline-block text-brand-yellow w-12 h-12 animate-spin mb-4"
+              style={{ animationDuration: "8s" }}
               fill="currentColor"
             />
-            <h2 className="text-3xl md:text-5xl font-black text-gray-900 mb-6">
+            <h2 className="text-3xl md:text-5xl font-black text-gray-900 mb-6 whitespace-pre-wrap">
               {SITE_CONTENT.cta.main}
             </h2>
             <p className="text-gray-600 mb-8">
@@ -292,7 +356,7 @@ function App() {
             </p>
           </div>
 
-          <div className="bg-blue-50 p-8 rounded-3xl border-2 border-dashed border-brand-blue mb-8">
+          <div className="bg-white p-8 rounded-3xl shadow-xl border-2 border-brand-blue/20 mb-8 hover:shadow-2xl transition-shadow">
             <p className="font-bold text-brand-blue mb-4 text-lg">
               参加無料・手ぶらでOK！
             </p>
@@ -300,12 +364,12 @@ function App() {
               <input
                 type="text"
                 placeholder="保護者様のお名前"
-                className="w-full p-4 rounded-lg border border-gray-300 focus:ring-2 focus:ring-brand-blue outline-none"
+                className="w-full p-4 rounded-xl border-2 border-gray-200 focus:border-brand-blue focus:ring-2 focus:ring-brand-blue/20 outline-none transition-all"
               />
               <input
                 type="email"
                 placeholder="メールアドレス"
-                className="w-full p-4 rounded-lg border border-gray-300 focus:ring-2 focus:ring-brand-blue outline-none"
+                className="w-full p-4 rounded-xl border-2 border-gray-200 focus:border-brand-blue focus:ring-2 focus:ring-brand-blue/20 outline-none transition-all"
               />
               <Button
                 fullWidth
@@ -322,8 +386,19 @@ function App() {
         </div>
       </section>
 
-      <footer className="bg-white py-8 border-t border-gray-100 text-center text-gray-500 text-sm">
-        <p>&copy; 2024 RoboKids Programming School. All rights reserved.</p>
+      <footer className="bg-gray-900 py-12 text-center text-gray-400 text-sm">
+        <div className="max-w-5xl mx-auto px-4">
+          <div className="flex items-center justify-center gap-2 mb-4">
+            <div className="w-8 h-8 bg-brand-blue rounded-lg flex items-center justify-center text-white">
+              <Rocket size={20} />
+            </div>
+            <span className="text-xl font-black tracking-tighter text-white">
+              RoboKids
+            </span>
+          </div>
+          <p className="mb-2">子どもたちの未来を、プログラミングで切り拓く</p>
+          <p>&copy; 2024 RoboKids Programming School. All rights reserved.</p>
+        </div>
       </footer>
 
       {/* Sticky Mobile Footer */}
