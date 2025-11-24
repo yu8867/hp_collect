@@ -82,6 +82,7 @@ services:
       - frontend3
       - frontend4
       - frontend5
+      - mail-server
 
 networks:
   webnet:
