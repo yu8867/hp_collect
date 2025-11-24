@@ -6,7 +6,7 @@ export const BURGER_MENU: MenuItem[] = [
     name: "THE STACK",
     description: "黒毛和牛パティ2枚×厚切りベーコン。肉の塔が、理性を破壊する。",
     price: "¥2,480",
-    imageUrl: "https://picsum.photos/600/600?random=1", // AI Prompt: A massive double cheeseburger with thick bacon, overflowing meat juices, dark moody lighting, professional food photography, macro shot.
+    imageUrl: "the-stack.png", // AI Prompt: A massive double cheeseburger with thick bacon, overflowing meat juices, dark moody lighting, professional food photography, macro shot.
     tags: ["No.1 人気", "肉量 400g"],
   },
   {
@@ -14,7 +14,7 @@ export const BURGER_MENU: MenuItem[] = [
     name: "CHEESE VOLCANO",
     description: "特製レッドチェダーソースの奔流。溢れ出すマグマを飲み干せ。",
     price: "¥2,180",
-    imageUrl: "https://picsum.photos/600/600?random=2", // AI Prompt: A gourmet burger completely covered in flowing melted yellow and red cheddar cheese sauce, steam rising, dark background, vibrant colors.
+    imageUrl: "volcano.png", // AI Prompt: A gourmet burger completely covered in flowing melted yellow and red cheddar cheese sauce, steam rising, dark background, vibrant colors.
     tags: ["濃厚", "辛口"],
   },
   {
@@ -23,7 +23,7 @@ export const BURGER_MENU: MenuItem[] = [
     description:
       "黒トリュフ香るソースとマッシュルーム。大人の欲望を満たす漆黒の贅沢。",
     price: "¥2,880",
-    imageUrl: "https://picsum.photos/600/600?random=3", // AI Prompt: A luxury burger with black truffle sauce, sautéed mushrooms, charcoal black bun, elegant moody lighting, cinematic look.
+    imageUrl: "norwal.png", // AI Prompt: A luxury burger with black truffle sauce, sautéed mushrooms, charcoal black bun, elegant moody lighting, cinematic look.
     tags: ["期間限定", "香り高い"],
   },
   {
@@ -103,7 +103,7 @@ export const FEATURES: FeatureItem[] = [
     title: "自家製ブリオッシュ",
     description:
       "肉汁を受け止めるためだけに開発された、バター香る特製バンズ。カリッと焼かれた断面が、食欲を加速させる。",
-    imageUrl: "https://picsum.photos/800/600?random=11", // AI Prompt: Freshly baked brioche burger buns, golden brown, steam rising, butter melting, dark background.
+    imageUrl: "briosh.png", // AI Prompt: Freshly baked brioche burger buns, golden brown, steam rising, butter melting, dark background.
   },
 ];
 
