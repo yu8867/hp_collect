@@ -35,4 +35,15 @@ export const PortfolioItems = [
     tags: ["近未来", "アニメーション", "世界観構築"],
     urls: `${BASE_URL}/yorha/`,
   },
+  {
+    id: "4",
+    title: "NORDIC ROAST",
+    category: "Restaurant / Cafe",
+    description:
+      "北欧風カフェのブランドサイト。シンプルで洗練されたデザインと、メニュー・店舗情報を掲載。",
+    imageUrl: "nordic-roast.png",
+    size: "tall",
+    tags: ["飲食店", "北欧デザイン", "シンプル"],
+    urls: `${BASE_URL}/nordic-roast/`,
+  },
 ];
