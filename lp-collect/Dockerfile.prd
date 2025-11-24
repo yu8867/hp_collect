@@ -4,7 +4,7 @@ WORKDIR /app
 
 # === Build Args (Vite 本番環境変数) ===
 ARG VITE_BASE_URL
-ARG VITE_MAIL_API_URL=https://nexgen-web.com/api
+ARG VITE_MAIL_API_URL=https://nexgen-web.com
 ENV VITE_BASE_URL=$VITE_BASE_URL
 ENV VITE_MAIL_API_URL=$VITE_MAIL_API_URL
 
