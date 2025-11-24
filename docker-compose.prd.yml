@@ -56,6 +56,16 @@ services:
     networks:
       - webnet
 
+  frontend5:
+    build:
+      context: ./nordic-roast
+      dockerfile: Dockerfile.prd
+    container_name: nordic_roast_frontend5
+    ports:
+      - "3005:80"
+    networks:
+      - webnet
+
   reverse-proxy:
     image: nginx:stable-alpine
     container_name: nginx_reverse_proxy
@@ -71,6 +81,7 @@ services:
       - frontend2
       - frontend3
       - frontend4
+      - frontend5
 
 networks:
   webnet:

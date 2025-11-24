@@ -71,3 +71,17 @@ services:
       - ./the-stack-burger:/app
       - /app/node_modules
     restart: always
+
+  frontend5:
+    build:
+      context: ./nordic-roast
+      dockerfile: Dockerfile.dev
+    container_name: nordic_roast_frontend5
+    environment:
+      - PORT=3005
+    ports:
+      - "3005:3005"
+    volumes:
+      - ./nordic-roast:/app
+      - /app/node_modules
+    restart: always
