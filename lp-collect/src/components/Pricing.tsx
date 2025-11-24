@@ -45,7 +45,7 @@ const Pricing: React.FC<PricingProps> = ({ onNavigate }) => {
                   テストマーケティングに必要なすべてをセットに。
                 </p>
                 <div className="text-5xl font-bold text-white mb-2 tracking-tight">
-                  ¥100,000
+                  ¥50,000
                   <span className="text-lg text-slate-500 font-normal">~</span>
                 </div>
                 <p className="text-xs text-slate-500">※要件により変動します</p>

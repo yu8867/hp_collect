@@ -102,7 +102,7 @@ const Comparison: React.FC = () => {
                 </div>
                 <div>
                   <h4 className="font-bold text-white text-lg mb-1">
-                    費用：要相談
+                    費用：¥50,000から
                   </h4>
                   <p className="text-sm text-slate-400">
                     AIによる効率化でコストを圧縮。浮いた予算を広告費に使えます。

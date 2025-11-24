@@ -46,7 +46,7 @@ const Hero: React.FC<HeroProps> = ({ onNavigate }) => {
             className="w-full sm:w-auto group relative px-8 py-4 bg-white text-black font-bold text-lg rounded-sm overflow-hidden transition-all hover:scale-105 active:scale-95"
           >
             <span className="relative z-10 flex items-center justify-center gap-2">
-              制作実績を見る{" "}
+              制作例を見る{" "}
               <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
             </span>
             <div className="absolute inset-0 bg-gradient-to-r from-neon-cyan to-neon-purple opacity-0 group-hover:opacity-20 transition-opacity"></div>
