@@ -7,7 +7,7 @@ import os
 import smtplib
 from email.mime.text import MIMEText
 from email.mime.multipart import MIMEMultipart
-from datetime import datetime
+from datetime import datetime, timezone, timedelta
 from typing import Optional
 
 from fastapi import FastAPI, HTTPException
@@ -63,7 +63,9 @@ class MailResponse(BaseModel):
 
 def create_email_content(form: ContactForm) -> tuple[str, str]:
     """Create email subject and body from form data"""
-    timestamp = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+    # 日本時間 (JST = UTC+9)
+    jst = timezone(timedelta(hours=9))
+    timestamp = datetime.now(jst).strftime("%Y-%m-%d %H:%M:%S")
 
     subject = f"【お問い合わせ】{form.name}様 ({form.company or '個人'})"
 
