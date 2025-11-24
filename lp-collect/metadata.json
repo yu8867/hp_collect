@@ -1,5 +1,16 @@
 {
-  "name": "NextGen Web Works",
-  "description": "Googleの最新AIを駆使したWeb制作サービス。最短3日で高品質なLPを提供します。",
-  "requestFramePermissions": []
+  "name": "NexGen Web Works",
+  "description": "Google/OpenAIの最新技術を駆使したWeb制作サービス。最短5日で高品質なLPを提供します。",
+  "requestFramePermissions": [],
+  "changelog": [
+    {
+      "version": "1.1.0",
+      "date": "2024-11-24",
+      "changes": [
+        "ContactPageをメールAPI連携に変更（mailto:廃止）",
+        "送信中/成功/エラー状態のUI追加",
+        "PortfolioItemsの説明・タグを実際のサイト内容に修正"
+      ]
+    }
+  ]
 }

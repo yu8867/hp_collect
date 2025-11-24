@@ -23,7 +23,7 @@ const HomeCTA: React.FC<HomeCTAProps> = ({ onNavigate }) => {
           <p className="text-slate-400 text-lg mb-10 leading-relaxed">
             アイデアを寝かせている間に、世界は進んでしまいます。
             <br />
-            まずは最短3日のプロトタイプから始めましょう。
+            まずは最短5日のプロトタイプから始めましょう。
             <br />
           </p>
 

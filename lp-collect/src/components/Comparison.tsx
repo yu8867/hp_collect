@@ -1,5 +1,5 @@
 import React from "react";
-import { X, Check, AlertCircle, Zap } from "lucide-react";
+import { Check, AlertCircle, Zap } from "lucide-react";
 
 const Comparison: React.FC = () => {
   return (
@@ -69,7 +69,7 @@ const Comparison: React.FC = () => {
             </div>
           </div>
 
-          {/* NextGen Service */}
+          {/* NexGen Service */}
           <div className="bg-slate-900/80 border border-neon-cyan p-8 md:p-10 rounded-2xl shadow-[0_0_50px_rgba(0,243,255,0.1)] relative md:scale-105 z-20 backdrop-blur-sm">
             <div className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-neon-cyan text-black font-bold px-4 py-1 rounded-full text-sm uppercase tracking-wider shadow-lg shadow-neon-cyan/50">
               当社
@@ -78,7 +78,7 @@ const Comparison: React.FC = () => {
             <h3 className="text-2xl font-bold text-white mb-8 text-center flex items-center justify-center gap-2">
               <span className="w-2 h-2 rounded-full bg-neon-cyan animate-pulse"></span>
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-white to-neon-cyan">
-                NextGen Web Works
+                NexGen Web Works
               </span>
             </h3>
 
@@ -89,7 +89,7 @@ const Comparison: React.FC = () => {
                 </div>
                 <div>
                   <h4 className="font-bold text-white text-lg mb-1">
-                    納期：最短3日
+                    納期：最短5日
                   </h4>
                   <p className="text-sm text-slate-400">
                     AIがベースを爆速構築。プロが仕上げるため品質も担保されます。
@@ -102,7 +102,7 @@ const Comparison: React.FC = () => {
                 </div>
                 <div>
                   <h4 className="font-bold text-white text-lg mb-1">
-                    費用：15万円〜
+                    費用：要相談
                   </h4>
                   <p className="text-sm text-slate-400">
                     AIによる効率化でコストを圧縮。浮いた予算を広告費に使えます。
@@ -115,10 +115,11 @@ const Comparison: React.FC = () => {
                 </div>
                 <div>
                   <h4 className="font-bold text-white text-lg mb-1">
-                    手間：チャット完結
+                    手間：完全リモート完結
                   </h4>
                   <p className="text-sm text-slate-400">
-                    ヒアリングフォームに入力するだけ。無駄な会議は一切ありません。
+                    Google
+                    Meetとチャットで全て完結。あなたの貴重な時間を無駄にしません。
                   </p>
                 </div>
               </div>

@@ -6,7 +6,15 @@ import {
   Mail,
   MessageSquare,
   Twitter,
+  CheckCircle,
+  AlertCircle,
+  Loader2,
 } from "lucide-react";
+
+const MAIL_API_URL =
+  import.meta.env.VITE_MAIL_API_URL || "http://localhost:8000";
+
+type SubmitStatus = "idle" | "loading" | "success" | "error";
 
 const ContactPage: React.FC = () => {
   const [formData, setFormData] = useState({
@@ -15,6 +23,8 @@ const ContactPage: React.FC = () => {
     email: "",
     message: "",
   });
+  const [submitStatus, setSubmitStatus] = useState<SubmitStatus>("idle");
+  const [errorMessage, setErrorMessage] = useState("");
 
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
@@ -25,14 +35,36 @@ const ContactPage: React.FC = () => {
     });
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    const subject = `お問い合わせ: ${formData.name}様 (${formData.company})`;
-    const body = `名前: ${formData.name}\n会社名: ${formData.company}\nメール: ${formData.email}\n\n本文:\n${formData.message}`;
-    // Open default mail client
-    window.location.href = `mailto:yuuki8867@gmail.com?subject=${encodeURIComponent(
-      subject
-    )}&body=${encodeURIComponent(body)}`;
+    setSubmitStatus("loading");
+    setErrorMessage("");
+
+    try {
+      const response = await fetch(`${MAIL_API_URL}/api/contact`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(formData),
+      });
+
+      const data = await response.json();
+
+      if (!response.ok) {
+        throw new Error(data.detail || "送信に失敗しました");
+      }
+
+      setSubmitStatus("success");
+      setFormData({ name: "", company: "", email: "", message: "" });
+    } catch (error) {
+      setSubmitStatus("error");
+      setErrorMessage(
+        error instanceof Error
+          ? error.message
+          : "送信に失敗しました。時間をおいて再度お試しください。"
+      );
+    }
   };
 
   return (
@@ -58,11 +90,11 @@ const ContactPage: React.FC = () => {
               <ul className="space-y-4">
                 <li className="flex items-center gap-3 text-slate-300">
                   <Mail className="w-5 h-5 text-neon-cyan" />
-                  <span className="text-sm">hello@nextgenworks.ai</span>
+                  <span className="text-sm">nexgen.web.2025@gmail.com</span>
                 </li>
                 <li className="flex items-center gap-3 text-slate-300">
                   <Twitter className="w-5 h-5 text-neon-cyan" />
-                  <span className="text-sm">@NextGenWorks</span>
+                  <span className="text-sm">@NexGen2025</span>
                 </li>
               </ul>
             </div>
@@ -109,7 +141,7 @@ const ContactPage: React.FC = () => {
                     name="company"
                     value={formData.company}
                     onChange={handleChange}
-                    placeholder="株式会社NextGen"
+                    placeholder="株式会社NexGen"
                     className="w-full bg-black/40 border border-white/10 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-neon-cyan focus:ring-1 focus:ring-neon-cyan transition-all"
                   />
                 </div>
@@ -149,17 +181,43 @@ const ContactPage: React.FC = () => {
 
               <button
                 type="submit"
-                className="w-full group relative bg-white text-black font-bold py-4 rounded-lg overflow-hidden hover:scale-[1.02] transition-transform"
+                disabled={submitStatus === "loading"}
+                className="w-full group relative bg-white text-black font-bold py-4 rounded-lg overflow-hidden hover:scale-[1.02] transition-transform disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100"
               >
                 <span className="relative z-10 flex items-center justify-center gap-2">
-                  メールを送信する{" "}
-                  <Send className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                  {submitStatus === "loading" ? (
+                    <>
+                      送信中...
+                      <Loader2 className="w-4 h-4 animate-spin" />
+                    </>
+                  ) : (
+                    <>
+                      送信する
+                      <Send className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                    </>
+                  )}
                 </span>
                 <div className="absolute inset-0 bg-gradient-to-r from-neon-cyan to-neon-purple opacity-0 group-hover:opacity-20 transition-opacity"></div>
               </button>
 
+              {submitStatus === "success" && (
+                <div className="flex items-center justify-center gap-2 text-green-400 bg-green-400/10 py-3 rounded-lg">
+                  <CheckCircle className="w-5 h-5" />
+                  <span>
+                    お問い合わせを受け付けました。ありがとうございます。
+                  </span>
+                </div>
+              )}
+
+              {submitStatus === "error" && (
+                <div className="flex items-center justify-center gap-2 text-red-400 bg-red-400/10 py-3 rounded-lg">
+                  <AlertCircle className="w-5 h-5" />
+                  <span>{errorMessage}</span>
+                </div>
+              )}
+
               <p className="text-xs text-slate-500 text-center">
-                ※送信ボタンを押すと、お使いのメールソフトが起動します。
+                ※通常2営業日以内にご連絡いたします。
               </p>
             </div>
           </form>

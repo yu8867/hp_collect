@@ -38,7 +38,7 @@ const Navbar: React.FC<NavbarProps> = ({ currentView, onNavigate }) => {
         >
           <div className="w-5 h-5 bg-neon-cyan shadow-[0_0_10px_#00f3ff]"></div>
           <span className="font-display font-bold text-xl tracking-wider text-white">
-            NEXTGEN
+            NEXGEN
           </span>
         </div>
 

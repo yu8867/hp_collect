@@ -1,21 +1,21 @@
+# Build Stage
 FROM node:20-slim AS builder
 WORKDIR /app
 
-# Install dependencies
 COPY package.json package-lock.json ./
 RUN npm ci
 
-# Copy app source and build Vite bundle
 COPY . .
 RUN npm run build
 
-FROM nginx:stable-alpine AS runner
+# Production Stage
+FROM nginx:stable-alpine
 
-# Replace default config with SPA-friendly server block
+# デフォルト nginx 設定を削除し SPA 設定へ差し替え
 RUN rm -f /etc/nginx/conf.d/default.conf
 COPY nginx.conf /etc/nginx/conf.d/default.conf
 
-# Serve built static files
+# ビルドした静的ファイルを配置
 COPY --from=builder /app/dist /usr/share/nginx/html/
 
 EXPOSE 80

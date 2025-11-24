@@ -1,0 +1,19 @@
+{
+  "name": "LP Collect Mail Server",
+  "description": "FastAPIベースのメール送信APIサーバー。お問い合わせフォームからのメール送信を処理。",
+  "version": "1.0.0",
+  "tech": ["Python", "FastAPI", "SMTP"],
+  "changelog": [
+    {
+      "version": "1.0.0",
+      "date": "2024-11-24",
+      "changes": [
+        "初期リリース",
+        "POST /api/contact エンドポイント実装",
+        "Gmail SMTP対応",
+        "CORS設定対応",
+        "Docker環境構築（dev/stg/prd）"
+      ]
+    }
+  ]
+}

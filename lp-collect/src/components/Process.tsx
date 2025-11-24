@@ -6,7 +6,7 @@ const steps = [
     id: 1,
     title: "ヒアリング",
     description:
-      "専用フォームにて、サービスの概要、ターゲット、参考サイトなどを入力していただきます。30分程度で完了します。",
+      "Google Meetや専用フォームにて、サービスの概要、ターゲット、参考サイトなどをお伺いします。30分程度で完了します。",
     icon: MessageSquare,
     color: "text-blue-400",
   },
@@ -14,7 +14,7 @@ const steps = [
     id: 2,
     title: "AI構築 & デザイン",
     description:
-      "Geminiが構成案を作成し、Imagenが素材を生成。その後、プロのディレクターがデザインとコピーを洗練させます。",
+      "Geminiが構成案を作成し、Imagenが素材を生成。その後、プロがデザインとコーディングを行います。",
     icon: Cpu,
     color: "text-purple-400",
   },

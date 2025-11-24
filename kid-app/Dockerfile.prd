@@ -2,18 +2,10 @@
 FROM node:20-slim AS builder
 WORKDIR /app
 
-# === Build Args (Vite 本番環境変数) ===
-ARG VITE_BASE_URL
-ENV VITE_BASE_URL=$VITE_BASE_URL
-
 COPY package.json package-lock.json ./
 RUN npm ci
 
 COPY . .
-
-# Vite は build 時の .env.production を読むため作成
-RUN echo "VITE_BASE_URL=$VITE_BASE_URL" > .env.production
-
 RUN npm run build
 
 # Production Stage
